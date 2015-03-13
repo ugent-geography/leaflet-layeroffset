@@ -1,0 +1,25 @@
+{
+  "name": "leaflet.layeroffset",
+  "authors": [
+    "Michiel Van den Berghe <michiel.vdb@gmail.com>"
+  ],
+  "description": "Drag a layer around without changing the overall viewport",
+  "main": "dist/Leaflet.layeroffset.js",
+  "keywords": [
+    "leaflet",
+    "layer",
+    "offset"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "leaflet": "master"
+  }
+}

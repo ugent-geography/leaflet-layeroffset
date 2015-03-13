@@ -1,3 +1,19 @@
 *.DS_Store
 thumbs.db
-
+dist/*.js
+ *.sublime-*
+ node_modules
+.DS_Store
+tmp/**/*
+.idea
+.idea/**/*
+*.iml
+*.sublime-*
+_site
+dist/*.js
+coverage/
+*.js.html
+index.html
+.mailmap
+bower_components/
+node_modules/
