@@ -1,6 +1,5 @@
 *.DS_Store
 thumbs.db
-dist/*.js
  *.sublime-*
  node_modules
 .DS_Store
@@ -13,7 +12,6 @@ _site
 dist/*.js
 coverage/
 *.js.html
-index.html
 .mailmap
 bower_components/
 node_modules/
