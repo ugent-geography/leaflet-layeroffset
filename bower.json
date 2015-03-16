@@ -4,7 +4,7 @@
     "Michiel Van den Berghe <michiel.vdb@gmail.com>"
   ],
   "description": "Drag a layer around without changing the overall viewport",
-  "main": "dist/Leaflet.layeroffset.js",
+  "main": "dist/Leaflet.layershift.js",
   "keywords": [
     "leaflet",
     "layer",
@@ -17,9 +17,7 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
-  ],
-  "dependencies": {
-    "leaflet": "master"
-  }
+    "tests",
+    "index.html"
+  ]
 }
