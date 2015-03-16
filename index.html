@@ -13,20 +13,21 @@
          <div id="map" style="height: 600px;"></div>
          <script type="text/javascript">
             var map = L.map('map');
-            var MapQuestOpen_OSM = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
+
+            var osm = L.shiftableTileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
                 attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                 subdomains: '1234'
-            })//.addTo(map);
-
-            var Esri_WorldImagery = new L.ShiftableTileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }).addTo(map);
 
             map.setView([51.02435, 3.71018], 17);
 
             L.marker([51.02420903259807, 3.710685968399048]).addTo(map);
 
-            Esri_WorldImagery.layerOffset.enable();
+            osm.layerOffset.enable();
+
+            osm.on('shiftstart shift shiftend', function(e) {
+                console.log(e);
+            })
          </script>
     </body>
 </html>

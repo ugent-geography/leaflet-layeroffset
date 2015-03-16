@@ -16,8 +16,8 @@ L.LayerOffset = L.Handler.extend({
         this.bgDraggable = new L.Draggable(this.layer._bgBuffer);
         this.bgDraggable.enable();
         this.bgDraggable.on('drag', this._onDrag, this);
-
         this._map.on('zoomanim', this._animateZoom, this);
+        this.layer.fire('shiftstart');
     },
 
     removeHooks: function() {
@@ -30,6 +30,7 @@ L.LayerOffset = L.Handler.extend({
         this.bgDraggable.disable();
         this.bgDraggable = null;
         this._map.off('zoomanim', this._animateZoom, this);
+        this.layer.fire('shiftend');
     },
 
     getShiftDistance: function() {
@@ -63,6 +64,11 @@ L.LayerOffset = L.Handler.extend({
         this.layer.offsetBounds(offset || L.point([0, 0]));
         L.DomUtil.setPosition(this.layer._tileContainer, offset);
         L.DomUtil.setPosition(this.layer._bgBuffer, offset);
+        this.layer.fire('shift', {
+            distance: this.getShiftDistance(),
+            pixelDistance: this.pixelShift,
+            angle: this.getShiftAngle()
+        });
     }
 });
 
@@ -102,4 +108,8 @@ L.ShiftableTileLayer = L.TileLayer.extend({
         this._boundsOffset = offset;
         this._update();
     }
-})
+});
+
+L.shiftableTileLayer = function(url, options) {
+    return new L.ShiftableTileLayer(url, options);
+}
