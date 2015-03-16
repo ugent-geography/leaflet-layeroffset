@@ -66,7 +66,7 @@ L.LayerShift = L.Handler.extend({
         L.DomUtil.setPosition(this.layer._bgBuffer, offset);
         this.layer.fire('shift', {
             distance: this.getShiftDistance(),
-            pixelDistance: this.pixelShift,
+            pixelShift: this.pixelShift,
             angle: this.getShiftAngle()
         });
     }
