@@ -1,6 +1,6 @@
 'use strict';
 
-L.LayerOffset = L.Handler.extend({
+L.LayerShift = L.Handler.extend({
     initialize: function(map, layer, options) {
         L.Handler.prototype.initialize.call(this, map);
         this.layer = layer;
@@ -76,7 +76,7 @@ L.ShiftableTileLayer = L.TileLayer.extend({
     _boundsOffset: L.point([0, 0]),
 
     onAdd: function(map) {
-        this.layerOffset = new L.LayerOffset(map, this);
+        this.layerShift = new L.LayerShift(map, this);
         L.TileLayer.prototype.onAdd.call(this, map);
     },
 

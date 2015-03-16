@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Leaflet.layeroffset</title>
+        <title>Leaflet.layershift</title>
         <meta charset="utf-8">
 
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
         <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet-src.js"></script>
 
-        <script src="dist/leaflet.layeroffset.js"></script>
+        <script src="dist/leaflet.layershift.js"></script>
     </head>
     <body>
-         <div id="map" style="height: 600px;"></div>
-         <script type="text/javascript">
+        <div id="map" style="height: 600px;"></div>
+        <p>
+            Open the console to see events. The marker stays in the same place,
+            the MapQuest tiles are shifted.
+        </p>
+        <script type="text/javascript">
             var map = L.map('map');
 
             var osm = L.shiftableTileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
@@ -23,11 +27,11 @@
 
             L.marker([51.02420903259807, 3.710685968399048]).addTo(map);
 
-            osm.layerOffset.enable();
+            osm.layerShift.enable();
 
             osm.on('shiftstart shift shiftend', function(e) {
                 console.log(e);
             })
-         </script>
+        </script>
     </body>
 </html>
