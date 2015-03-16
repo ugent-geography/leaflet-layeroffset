@@ -27,7 +27,7 @@
 
             L.marker([51.02420903259807, 3.710685968399048]).addTo(map);
 
-            osm.layerShift.enable();
+            osm.shifting.enable();
 
             osm.on('shiftstart shift shiftend', function(e) {
                 console.log(e);

@@ -76,7 +76,7 @@ L.ShiftableTileLayer = L.TileLayer.extend({
     _boundsOffset: L.point([0, 0]),
 
     onAdd: function(map) {
-        this.layerShift = new L.LayerShift(map, this);
+        this.shifting = new L.LayerShift(map, this);
         L.TileLayer.prototype.onAdd.call(this, map);
     },
 
