@@ -31,8 +31,9 @@ layer.shifting.disable();
 There are no additional event properties.
 ###shift
 Fired whenever the layer is dragged.
-|Property|Type|Description|
-|--------|----|-----------|
-|distance|Number|The distance the layer was shifted from its initial position in meters|
-|pixelShift|Point|The vector by which the layer was shifted in layer container pixels|
-|angle|Number|The angle of the pixelShift vector in radians - 0 is north|
+
+| Property | Type | Description
+| -------- | ---- | -----------
+| distance | Number | The distance the layer was shifted from its initial position in meters
+| pixelShift | Point | The vector by which the layer was shifted in layer container pixels
+| angle |Number| The angle of the pixelShift vector in radians - 0 is north
