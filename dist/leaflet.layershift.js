@@ -8,19 +8,22 @@ L.LayerShift = L.Handler.extend({
     },
 
     addHooks: function() {
+        this.fg = true;
         this.pixelShift = L.point([0, 0]);
         this._shift(this.pixelShift);
-        this.fgDraggable = new L.Draggable(this.layer._tileContainer);
+        this.fgDraggable = new L.Draggable(this.layer._tileContainer, this._map.getPanes().mapPane);
         this.fgDraggable.enable();
         this.fgDraggable.on('drag', this._onDrag, this);
-        this.bgDraggable = new L.Draggable(this.layer._bgBuffer);
-        this.bgDraggable.enable();
+        this.bgDraggable = new L.Draggable(this.layer._bgBuffer, this._map.getPanes().mapPane);
+        //this.bgDraggable.enable();
         this.bgDraggable.on('drag', this._onDrag, this);
         this._map.on('zoomanim', this._animateZoom, this);
+        this._map.on('zoomend', this._zoomEnd, this);
         this.layer.fire('shiftstart');
     },
 
     removeHooks: function() {
+        this.fg = true;
         this.pixelShift = L.point([0, 0]);
         this._shift(this.pixelShift);
         this.fgDraggable.off('drag', this._onDrag, this);
@@ -30,6 +33,7 @@ L.LayerShift = L.Handler.extend({
         this.bgDraggable.disable();
         this.bgDraggable = null;
         this._map.off('zoomanim', this._animateZoom, this);
+        this._map.off('zoomend', this._zoomEnd, this);
         this.layer.fire('shiftend');
     },
 
@@ -58,6 +62,17 @@ L.LayerShift = L.Handler.extend({
     _animateZoom: function(e) {
         this.pixelShift = this.pixelShift.divideBy(1 / e.scale);
         L.DomUtil.setPosition(this.layer._tileContainer, this.pixelShift);
+    },
+
+    _zoomEnd: function(e) {
+        if(this.fg) {
+            this.fgDraggable.disable();
+            this.bgDraggable.enable();
+        } else {
+            this.bgDraggable.disable();
+            this.fgDraggable.enable();
+        }
+        this.fg = !this.fg;
     },
 
     _shift: function(offset, animate) {
