@@ -1,10 +1,29 @@
 'use strict';
 
 L.LayerShift = L.Handler.extend({
+    includes: L.Mixin.Events,
+    enabled: false,
+
     initialize: function(map, layer, options) {
         L.Handler.prototype.initialize.call(this, map);
         this.layer = layer;
         L.Util.setOptions(this, options || {});
+    },
+
+    enable: function() {
+        if(!this.enabled) {
+            L.Handler.prototype.enable.call(this);
+            this.fire('enabled', {});
+            this.enabled = true;
+        }
+    },
+
+    disable: function() {
+        if(this.enabled) {
+            L.Handler.prototype.disable.call(this);
+            this.fire('disabled', {});
+            this.enabled = false;
+        }
     },
 
     addHooks: function() {
