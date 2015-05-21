@@ -66,8 +66,8 @@ L.LayerShift = L.Handler.extend({
     },
 
     getShiftAngle: function() {
-        var angle =  Math.atan2(this.pixelShift.x, this.pixelShift.y);
-        if(angle < 0) {
+        var angle =  Math.atan2(-this.pixelShift.x, this.pixelShift.y);
+        while(angle < 0) {
             angle += Math.PI * 2;
         }
         return angle;
